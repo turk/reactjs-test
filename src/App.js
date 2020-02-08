@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import React, {Fragment} from 'react';
+import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
+import {PrivateRoute} from './components/PrivateRoute';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <Fragment>
+            <Router>
+
+              <Link to="/">Home </Link>
+              <Link to="/product">Product </Link>
+              <Link to="/login">Login </Link>
+                <Switch>
+                    <PrivateRoute path='/product'>
+                        Product Page
+                    </PrivateRoute>
+
+                    <Route exact path='/'>
+                        Home Page
+                    </Route>
+
+                    <Route exact path='/login'>
+                        Login Page
+                    </Route>
+                </Switch>
+            </Router>
+        </Fragment>
+    );
 }
 
 export default App;
