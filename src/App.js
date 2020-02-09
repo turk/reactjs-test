@@ -5,6 +5,7 @@ import {PrivateRoute} from './components/PrivateRoute';
 import Nav from './components/common/Nav';
 import Sidebar from './components/common/Sidebar';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './containers/Dashboard';
 
 function App() {
     return (
@@ -20,13 +21,17 @@ function App() {
                                     Product Page
                                 </PrivateRoute>
 
-                                <PrivateRoute path='/users'>
+                                <PrivateRoute exact path='/users'>
                                     Users List Page
                                 </PrivateRoute>
 
                                 <Route exact path='/'>
                                     Home Page
                                 </Route>
+
+                                <PrivateRoute exact path='/dashboard'>
+                                    <Dashboard />
+                                </PrivateRoute>
 
                                 <Route exact path='/login'>
                                     Login Page
