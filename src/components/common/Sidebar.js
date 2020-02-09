@@ -17,13 +17,13 @@ class Sidebar extends Component {
 
         this.setState({
             items: [
-                {name: "dashboard", label: "Dashboard"},
+                {name: "dashboard", label: "Dashboard", route: '/dashboard'},
                 {
                     name: "user",
                     label: "User",
                     items: [
-                        {name: "users", label: "Users"},
-                        {name: "create-user", label: "Create User"},
+                        {name: "users", label: "Users", route: '/users'},
+                        {name: "createUser", label: "Create User", route: '/users/create'},
                     ]
                 },
             ]
@@ -54,7 +54,7 @@ class Sidebar extends Component {
                     <ul className="nav ps ps--active-y">
                         {this.state.items.map((item) => (
                             <li key={item.name} className="nav-item">
-                                <Link to='/' className={classNames({
+                                <Link to={item.route || '#'} className={classNames({
                                     "nav-link": true,
                                     collapsed: !this.state[item.name]
                                 })} onClick={() => this.handleToggle(item.name)}>
@@ -68,7 +68,7 @@ class Sidebar extends Component {
                                         <ul className="nav flex-column sub-menu">
                                             {item.items.map((item) => (
                                                 <li key={item.name} className="nav-item">
-                                                    <Link to={item.name} className="nav-link">
+                                                    <Link to={item.route} className="nav-link">
                                                         {item.label}
                                                     </Link>
                                                 </li>
